@@ -16,6 +16,7 @@
 		4F8A35A120450B5200D4265F /* ThreadTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8A35A020450B5200D4265F /* ThreadTestTests.m */; };
 		4F8A35AC20450B5200D4265F /* ThreadTestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8A35AB20450B5200D4265F /* ThreadTestUITests.m */; };
 		4F8A35BB20450BC400D4265F /* TicketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8A35BA20450BC400D4265F /* TicketManager.m */; };
+		4F8A35FC2045451600D4265F /* TaskSingle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8A35FB2045451600D4265F /* TaskSingle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		4F8A35AD20450B5200D4265F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F8A35B920450BC300D4265F /* TicketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketManager.h; sourceTree = "<group>"; };
 		4F8A35BA20450BC400D4265F /* TicketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketManager.m; sourceTree = "<group>"; };
+		4F8A35FA2045451500D4265F /* TaskSingle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskSingle.h; sourceTree = "<group>"; };
+		4F8A35FB2045451600D4265F /* TaskSingle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskSingle.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +118,8 @@
 				4F8A359220450B5200D4265F /* LaunchScreen.storyboard */,
 				4F8A359520450B5200D4265F /* Info.plist */,
 				4F8A359620450B5200D4265F /* main.m */,
+				4F8A35FA2045451500D4265F /* TaskSingle.h */,
+				4F8A35FB2045451600D4265F /* TaskSingle.m */,
 			);
 			path = ThreadTest;
 			sourceTree = "<group>";
@@ -273,6 +278,7 @@
 				4F8A358C20450B5200D4265F /* ViewController.m in Sources */,
 				4F8A35BB20450BC400D4265F /* TicketManager.m in Sources */,
 				4F8A359720450B5200D4265F /* main.m in Sources */,
+				4F8A35FC2045451600D4265F /* TaskSingle.m in Sources */,
 				4F8A358920450B5200D4265F /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

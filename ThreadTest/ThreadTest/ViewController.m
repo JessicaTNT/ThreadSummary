@@ -51,6 +51,15 @@
     [gcdBtn addTarget:self action:@selector(clickGCD) forControlEvents:UIControlEventTouchUpInside];
     gcdBtn.backgroundColor = [UIColor blueColor];
     [self.view addSubview:gcdBtn];
+    
+    
+    // 单例
+    UIButton *singleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    singleBtn.frame = CGRectMake(100, 240, 100, 30);
+    [singleBtn setTitle:@"单例" forState:UIControlStateNormal];
+    [singleBtn addTarget:self action:@selector(singleBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    singleBtn.backgroundColor = [UIColor blueColor];
+    [self.view addSubview:singleBtn];
 }
 
 - (void)saleTicktes{
@@ -117,7 +126,7 @@ void *run(void *data){
 #pragma MARK -- GCD
 - (void)clickGCD{
     NSLog(@"执行GCD");
-    // 1.
+    // 1.经典的GCD用法
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         // 执行耗时操作
         NSLog(@"start task 1");
@@ -167,11 +176,11 @@ void *run(void *data){
     });
     
     
-    // GCD-Group
+    // 4.GCD-Group的使用
     dispatch_queue_t queueGroup = dispatch_queue_create("gcd_group", DISPATCH_QUEUE_CONCURRENT); // 创建并行的queue
     dispatch_group_t group  = dispatch_group_create();
     
-    // 1. 完成执行异步请求,并且统一通知任务完成
+    // 1. 完成执行异步请求,并且统一通知任务完成(enter和leave成对出现)
     dispatch_group_enter(group);
     [self sendRequest1:^{
         NSLog(@"request1 done");
@@ -184,6 +193,7 @@ void *run(void *data){
     }];
     
     // 2. test
+    /*
     dispatch_group_async(group, queueGroup, ^{
         // 1.
         //        NSLog(@"task 1");
@@ -209,7 +219,7 @@ void *run(void *data){
         [NSThread sleepForTimeInterval:2];
         NSLog(@"task3 end");
     });
-    
+    */
     dispatch_group_notify(group, queueGroup, ^{
         // 在子线程中执行改通知,如果要刷新UI要回到主线程
         NSLog(@"所有group任务结束后的通知");
@@ -238,6 +248,10 @@ void *run(void *data){
             block();
         }
     });
+}
+#pragma mark -- 单例
+- (void)singleBtnAction{
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
