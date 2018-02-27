@@ -11,7 +11,7 @@
 #import "TicketManager.h"
 #import "TaskSingle.h"
 @interface ViewController ()
-
+@property (nonatomic, strong) NSOperationQueue *operQueue;
 @end
 
 @implementation ViewController
@@ -66,9 +66,18 @@
     UIButton *delayBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     delayBtn.frame = CGRectMake(100, 300, 100, 30);
     [delayBtn setTitle:@"延迟执行" forState:UIControlStateNormal];
-    [delayBtn addTarget:self action:@selector(delayBtnBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [delayBtn addTarget:self action:@selector(delayBtnAction) forControlEvents:UIControlEventTouchUpInside];
     delayBtn.backgroundColor = [UIColor blueColor];
     [self.view addSubview:delayBtn];
+    
+    
+    // NSOperation
+    UIButton *operationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    operationBtn.frame = CGRectMake(100, 360, 150, 30);
+    [operationBtn setTitle:@"NSOperation" forState:UIControlStateNormal];
+    [operationBtn addTarget:self action:@selector(operationBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    operationBtn.backgroundColor = [UIColor blueColor];
+    [self.view addSubview:operationBtn];
 }
 
 - (void)saleTicktes{
@@ -278,6 +287,39 @@ void *run(void *data){
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         NSLog(@"delay了");
     });
+}
+
+#pragma mark -- NSOperation
+- (void)operationBtnAction{
+    // 两种使用方式:
+    // 1.NSInvocationOperation和NSBlockOperation 都是同步执行 会阻塞当前线程
+    
+    /*
+    NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(invocationTask) object:nil];
+    // 1).执行start方法会阻塞当前线程,同步执行
+    [operation start];
+    */
+    
+
+    NSBlockOperation *blockOper = [NSBlockOperation blockOperationWithBlock:^{
+        
+    }];
+        // 异步执行
+    if (!self.operQueue) {
+        self.operQueue = [[NSOperationQueue alloc] init];
+    }
+//    [blockOper start];
+    [self.operQueue addOperation:blockOper];
+    NSLog(@"end");
+    // 2.自定义类继承NSOperation
+}
+- (void)invocationTask{
+    NSLog(@"main thread");
+    // 耗时任务
+    for (int i = 0; i < 3; i++) {
+        NSLog(@"invocation %d", i);
+        [NSThread sleepForTimeInterval:1];
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
