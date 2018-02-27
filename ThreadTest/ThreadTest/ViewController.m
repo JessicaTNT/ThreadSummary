@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import <pthread.h>
 #import "TicketManager.h"
+#import "TaskSingle.h"
 @interface ViewController ()
 
 @end
@@ -60,6 +61,14 @@
     [singleBtn addTarget:self action:@selector(singleBtnAction) forControlEvents:UIControlEventTouchUpInside];
     singleBtn.backgroundColor = [UIColor blueColor];
     [self.view addSubview:singleBtn];
+    
+    // 延迟执行
+    UIButton *delayBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    delayBtn.frame = CGRectMake(100, 300, 100, 30);
+    [delayBtn setTitle:@"延迟执行" forState:UIControlStateNormal];
+    [delayBtn addTarget:self action:@selector(delayBtnBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    delayBtn.backgroundColor = [UIColor blueColor];
+    [self.view addSubview:delayBtn];
 }
 
 - (void)saleTicktes{
@@ -249,9 +258,26 @@ void *run(void *data){
         }
     });
 }
+
+
 #pragma mark -- 单例
 - (void)singleBtnAction{
-    
+//    [TaskSingle shareInstance];
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        NSLog(@"excuted only once");
+    });
+}
+#pragma mark -- 延迟执行
+- (void)delayBtnAction{
+    NSLog(@"开始执行");
+    // 缺点:只要执行了就不能停止
+    // 参数:DISPATCH_TIME_NOW, DISPATCH_TIME_FOREVER
+    // 参数:NSEC_PER_SEC ,NSEC_PER_MSEC, USEC_PER_SEC, NSEC_PER_USEC
+    // 延迟2s执行
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSLog(@"delay了");
+    });
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

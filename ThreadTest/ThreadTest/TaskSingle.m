@@ -10,7 +10,7 @@
 
 @implementation TaskSingle
 + (instancetype)shareInstance{
-   static dispatch_once_t once;
+    static dispatch_once_t once;
     static TaskSingle *task;
     dispatch_once(&once, ^{
         NSLog(@"初始化单例");
