@@ -10,6 +10,7 @@
 #import <pthread.h>
 #import "TicketManager.h"
 #import "TaskSingle.h"
+#import "CustomOperation.h"
 @interface ViewController ()
 @property (nonatomic, strong) NSOperationQueue *operQueue;
 @end
@@ -301,17 +302,36 @@ void *run(void *data){
     */
     
 
-    NSBlockOperation *blockOper = [NSBlockOperation blockOperationWithBlock:^{
-        
-    }];
+//    NSBlockOperation *blockOper = [NSBlockOperation blockOperationWithBlock:^{
+//        for (int i = 0; i < 3; i++) {
+//            NSLog(@"invocation %d", i);
+//            [NSThread sleepForTimeInterval:1];
+//        }
+//    }];
         // 异步执行
     if (!self.operQueue) {
         self.operQueue = [[NSOperationQueue alloc] init];
     }
 //    [blockOper start];
-    [self.operQueue addOperation:blockOper];
+//    [self.operQueue addOperation:blockOper];
     NSLog(@"end");
     // 2.自定义类继承NSOperation
+    CustomOperation *operationA = [[CustomOperation alloc] initWithName:@"It's me A ok? "];
+    CustomOperation *operationB = [[CustomOperation alloc] initWithName:@"It's me B ok? "];
+    CustomOperation *operationC = [[CustomOperation alloc] initWithName:@"It's me C ok? "];
+    CustomOperation *operationD = [[CustomOperation alloc] initWithName:@"It's me D ok? "];
+
+    // 设置最大并发数
+    [self.operQueue setMaxConcurrentOperationCount:1];
+    // 设置依赖关系:执行顺序B->C->A->D
+    [operationD addDependency:operationA];
+    [operationA addDependency:operationC];
+    [operationC addDependency:operationB];
+    // 4个线程并发执行
+    [self.operQueue addOperation:operationA];
+    [self.operQueue addOperation:operationB];
+    [self.operQueue addOperation:operationC];
+    [self.operQueue addOperation:operationD];
 }
 - (void)invocationTask{
     NSLog(@"main thread");

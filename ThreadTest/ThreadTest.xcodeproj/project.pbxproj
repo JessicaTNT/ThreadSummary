@@ -17,6 +17,7 @@
 		4F8A35AC20450B5200D4265F /* ThreadTestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8A35AB20450B5200D4265F /* ThreadTestUITests.m */; };
 		4F8A35BB20450BC400D4265F /* TicketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8A35BA20450BC400D4265F /* TicketManager.m */; };
 		4F8A35FC2045451600D4265F /* TaskSingle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8A35FB2045451600D4265F /* TaskSingle.m */; };
+		4F9011AA2046488B00FF7716 /* CustomOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9011A92046488B00FF7716 /* CustomOperation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,8 @@
 		4F8A35BA20450BC400D4265F /* TicketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketManager.m; sourceTree = "<group>"; };
 		4F8A35FA2045451500D4265F /* TaskSingle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskSingle.h; sourceTree = "<group>"; };
 		4F8A35FB2045451600D4265F /* TaskSingle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskSingle.m; sourceTree = "<group>"; };
+		4F9011A82046488B00FF7716 /* CustomOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomOperation.h; sourceTree = "<group>"; };
+		4F9011A92046488B00FF7716 /* CustomOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomOperation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +123,8 @@
 				4F8A359620450B5200D4265F /* main.m */,
 				4F8A35FA2045451500D4265F /* TaskSingle.h */,
 				4F8A35FB2045451600D4265F /* TaskSingle.m */,
+				4F9011A82046488B00FF7716 /* CustomOperation.h */,
+				4F9011A92046488B00FF7716 /* CustomOperation.m */,
 			);
 			path = ThreadTest;
 			sourceTree = "<group>";
@@ -277,6 +282,7 @@
 			files = (
 				4F8A358C20450B5200D4265F /* ViewController.m in Sources */,
 				4F8A35BB20450BC400D4265F /* TicketManager.m in Sources */,
+				4F9011AA2046488B00FF7716 /* CustomOperation.m in Sources */,
 				4F8A359720450B5200D4265F /* main.m in Sources */,
 				4F8A35FC2045451600D4265F /* TaskSingle.m in Sources */,
 				4F8A358920450B5200D4265F /* AppDelegate.m in Sources */,
